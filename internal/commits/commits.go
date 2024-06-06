@@ -169,9 +169,9 @@ func NotAuthoredByEmails(patterns []string, commits Commits) Commits {
 
 // WithMaxParents returns a Commits function that returns only commits with
 // a maximum number of parents
-func WithMaxParents(max int, commits Commits) Commits {
+func WithMaxParents(n int, commits Commits) Commits {
 	return filtered(func(c *Commit) bool {
-		return c.NumParents <= max
+		return c.NumParents <= n
 	},
 		commits,
 	)
