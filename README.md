@@ -1,8 +1,9 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  [![Stargazers][stars-shield]][stars-url]
-  [![Issues][issues-shield]][issues-url]
+
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
 # Commit linter in Go
 
