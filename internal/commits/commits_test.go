@@ -98,9 +98,9 @@ func TestSince(t *testing.T) {
 	assert.Contains(t, cmmts, &commits.Commit{Date: after})
 }
 
-func TestFakeCommit(t *testing.T) {
+func TestMsgIn(t *testing.T) {
 	const message = "test subject\n\ntest body"
-	cmmts := commits.FakeCommit(strings.NewReader(message))()
+	cmmts := commits.MsgIn(strings.NewReader(message))()
 	if len(cmmts) != 1 {
 		t.Errorf("Expected %d commits, got %d", 1, len(cmmts))
 	}

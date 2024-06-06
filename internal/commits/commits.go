@@ -177,8 +177,10 @@ func WithMaxParents(n int, commits Commits) Commits {
 	)
 }
 
-// FakeCommit returns a Commits function that returns a single fake commit
-func FakeCommit(reader io.Reader) Commits {
+// MsgIn returns a single fake commit with the message read from this reader
+//
+// This fake commit will have a fake hash and a date that is the current time.
+func MsgIn(reader io.Reader) Commits {
 	return func() []*Commit {
 		b, err := io.ReadAll(reader)
 		if err != nil {
