@@ -170,21 +170,21 @@ func tmpRepo(t *testing.T, msgs ...string) repo.Repo {
 	return func() (*git.Repository, error) {
 		repo, err := git.PlainInit(directory, false)
 		if err != nil {
-			t.Fatal(err)
+			return nil, err
 		}
 		wt, err := repo.Worktree()
 		if err != nil {
-			t.Fatal(err)
+			return nil, err
 		}
 		for i, msg := range msgs {
 			file := fmt.Sprintf("msg%d.txt", i)
 			err = os.WriteFile(filepath.Join(directory, file), []byte(msg), 0600)
 			if err != nil {
-				t.Fatal(err)
+				return nil, err
 			}
 			_, err = wt.Add(file)
 			if err != nil {
-				t.Fatal(err)
+				return nil, err
 			}
 			_, err = wt.Commit(msg, &git.CommitOptions{
 				Author: &object.Signature{
@@ -194,7 +194,7 @@ func tmpRepo(t *testing.T, msgs ...string) repo.Repo {
 				},
 			})
 			if err != nil {
-				t.Fatal(err)
+				return nil, err
 			}
 		}
 		return repo, nil
